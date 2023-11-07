@@ -16,3 +16,6 @@ Cross-Platform Accessibility: The To-Do app should be available on web browsers,
 Synchronization: Tasks and changes made in the application should be synchronized across devices to ensure consistency.
 User-Friendly Interface: The user interface should be intuitive and easy to use, allowing users to quickly add, edit, and complete tasks.
 By developing a comprehensive To-Do application that addresses these challenges and offers the mentioned features, we aim to empower individuals and teams to better manage their tasks, reduce stress, and enhance productivity in both personal and professional settings."
+
+
+Dynatrace is a software intelligence platform used for monitoring and managing the performance of applications and the underlying infrastructure in complex, dynamic environments. It provides real-time insights into the performance and health of applications, allowing organizations to ensure optimal user experience, identify and resolve performance bottlenecks, and optimize resource utilization. Here are some key use cases for Dynatrace:
