@@ -1,0 +1,7 @@
+Access Kibana: Open your web browser and navigate to the Kibana URL.
+Login: Log in to Kibana using your credentials.
+Go to Security: Once logged in, navigate to the Security section. This is usually found in the left-hand sidebar.
+Role Mapping: Look for an option related to role mappings. This might be within the Security section or under a specific user management area.
+Create Role Mapping: Find the option to create a new role mapping.
+Define Mapping: Define the mapping by specifying the rules that determine which roles are assigned to users or groups. This typically involves specifying conditions based on attributes like usernames, groups, or roles.
+Save: Once you've configured the role mapping, save your changes.
