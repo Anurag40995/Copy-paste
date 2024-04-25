@@ -1,0 +1,58 @@
+To install the Dynatrace OneAgent in Istio sidecars running in OpenShift pods, you'll follow a similar approach as in Kubernetes. Here's an example of how you can configure the Dynatrace OneAgent Operator to install the OneAgent into Istio sidecars in OpenShift pods:
+
+1. **Deploy Dynatrace OneAgent Operator**:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dynatrace-oneagent-operator
+  namespace: dynatrace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: dynatrace-oneagent-operator
+  template:
+    metadata:
+      labels:
+        name: dynatrace-oneagent-operator
+    spec:
+      serviceAccountName: dynatrace-oneagent-operator
+      containers:
+        - name: dynatrace-oneagent-operator
+          image: dynatrace/dynatrace-oneagent-operator:v1.0.0
+          args:
+            - "-namespace=$(POD_NAMESPACE)"
+          env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+```
+
+2. **Customize OneAgent Injection for Istio Sidecars**:
+
+```yaml
+apiVersion: dynatrace.com/v1alpha1
+kind: OneAgent
+metadata:
+  name: example-oneagent
+  namespace: dynatrace
+spec:
+  nodeSelector: {}
+  serviceAccountName: default
+  tolerations: []
+  customPodAnnotations:
+    sidecar.istio.io/inject: "true"
+  customPodLabels: {}
+  waitReadySeconds: 600
+```
+
+In this YAML configuration:
+
+- The `customPodAnnotations` section adds the Istio annotation `sidecar.istio.io/inject: "true"` to instruct Istio to inject the sidecar proxy into the pod.
+- Replace `example-oneagent` with the name you want to assign to the Dynatrace OneAgent instance.
+- Ensure the `namespace` matches the namespace where Istio and your applications are deployed.
+
+Apply these YAML configurations using `oc apply -f <filename>.yaml` to deploy the Dynatrace OneAgent Operator and configure the injection of OneAgent into Istio sidecars in OpenShift pods. Adjust the configurations as needed for your specific environment and requirements.
